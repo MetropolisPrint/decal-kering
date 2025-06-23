@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form Decal Kering</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background-color: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    h2 {
+      margin-bottom: 12px;
+      font-size: 22px;
+    }
+    p {
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="time"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    textarea {
+      height: 80px;
+    }
+    button {
+      margin-top: 24px;
+      background-color: #2b7de9;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .note {
+      margin-top: 30px;
+      font-weight: bold;
+      font-size: 15px;
+      color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Pesan "Decal Kering / Rugos UV Print"</h2>
+    <p>
+      <strong>Apa Kelebihannya?</strong><br>
+      Bisa diterapkan di segala bentuk / posisi / bahan pada suatu media. Dengan cara yang mudah dan sederhana.<br><br>
+      Tidak langsung tercetak pada media melainkan harus melalui bahan khusus terlebih dahulu (melalui kertas perantara). Serta Anti Air / Waterproof.
+    </p>
+
+    <form>
+      <label>Nama Anda</label>
+      <input type="text" name="nama" required />
+
+      <label>Nomor WA Anda</label>
+      <input type="text" name="wa" required />
+
+      <label>Ukuran Kertas</label>
+      <select name="ukuran-kertas" required>
+        <option value="A4">A4 (21 x 29,7 cm)</option>
+        <option value="A3">A3 (29,7 x 42 cm)</option>
+      </select>
+
+      <label>+ Spot Tinta Putih?</label>
+      <select name="spot-white" required>
+        <option value="Tidak">Tidak</option>
+        <option value="Ya, Perlu Tambah Tinta Spot White">Ya, Perlu Tambah Tinta Spot White</option>
+      </select>
+
+      <label>Anda membutuhkan print ini kapan?</label>
+      <input type="date" name="tanggal" required />
+
+      <label>Pada jam berapa?</label>
+      <input type="time" name="waktu" required />
+
+      <label>Catatan Khusus Untuk Admin Kami</label>
+      <textarea id="catatan" rows="4" placeholder="Contoh: Pastikan hasil print nya detail dan tidak buram ya , dll."></textarea>
+
+<p class="note">
+        Estimasi Dateline Yang Anda Atur Bisa Berubah Sesuai Kondisi Antrian, Anda Bisa Atur Negosiasi Waktu Dateline Dengan Admin Kami.<br><br>
+        "Pastikan File Anda Ready / Siap Print"
+      </p>
+
+      <button type="submit" onclick="redirectWa(event)">Cek Harga ke Admin Metropolis Print</button>
+
+      
+    </form>
+  </div>
+
+  <script>
+    function redirectWa(event) {
+      event.preventDefault();
+      const nama = document.querySelector('input[name="nama"]').value;
+      const wa = document.querySelector('input[name="wa"]').value;
+      const ukuran = document.querySelector('select[name="ukuran-kertas"]').value;
+      const spotWhite = document.querySelector('select[name="spot-white"]').value;
+      const tanggal = document.querySelector('input[name="tanggal"]').value;
+      const waktu = document.querySelector('input[name="waktu"]').value;
+      const catatan = document.querySelector('textarea[name="catatan"]').value;
+
+      const message = `
+Halo Admin Metropolis Print!
+
+Saya ingin memesan *Decal Kering / Rugos UV Print* dengan detail berikut:
+
+• Nama: ${nama}
+• Nomor WA: ${wa}
+• Ukuran Kertas: ${ukuran}
+• Spot Tinta Putih: ${spotWhite}
+• Tanggal Dibutuhkan: ${tanggal}
+• Jam Dibutuhkan: ${waktu}
+• Catatan Tambahan:
+${catatan}
+
+Terima kasih.
+      `;
+
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/6281216370657?text=${encodedMessage}`, '_blank');
+    }
+  </script>
+</body>
+</html>
